@@ -1,0 +1,94 @@
+﻿@model MongoDbProj.Models.Korpa
+
+@{ ViewData["Title"] = "prikaziSadrzajKorpe"; }
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Table 06</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="~/table/css/still.css">
+    </head>
+    <body>
+        <section class="ftco-section">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-6 text-center mb-4">
+                        <h2 class="heading-section">Korpa</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-wrap">
+                            <table class="table">
+                                <thead class="thead-primary">
+                                    <tr>
+                                        <th>&nbsp;</th>
+                                        <th>Naziv</th>
+                                        <th>Sifra</th>
+                                        <th>Cena</th>
+                                        <th>Kategorija</th>
+                                        <th>&nbsp;</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.Proizvodi)
+                                    {
+                                       @if (item != null)
+                                        {
+                                             <tr class="alert" role="alert">
+                                                  <td>
+                                                    <div class="img" style="background-image: url('/images/@item.PutanjaSlike'); "></div>
+                                                  </td>
+                                                  <td>
+                                                    <div class="email">
+                                                       @item.Naziv
+                                                     </div>
+                                                  </td>
+                                                  <td>
+                                                    @item.Sifra
+                                                  </td>
+                                                  <td class="quantity">
+                                                    @item.Cena
+                                                  </td>
+                                                  <td class="quantity">
+                                                    @item.Kategorija
+                                                  </td>
+                                                   <td>
+                                                    <form action="obrisiProizvodIzKorpe" method="post">
+                                                        <input type="text" name="Id" placeholder="Id" value="@item.Id" hidden="hidden" />
+                                                        <input type="text" name="IdKorpe" placeholder="IdKorpe" value="@Model.Id" hidden="hidden" />
+                                                        <input style="color:white; background-color: #035949" type="submit" value="Obrisi proizvod" />
+                                                    </form>
+                                                  </td>
+                                             </tr>
+                                         }
+                                      }
+                                </tbody>
+                            </table>
+                            <div>
+                                Ukupna cena korpe:@Model.UkupnaCenaKorpe
+                            </div>
+                            <div class="nazadKupiDiv" style="display:flex; flex-direction:row">
+                                <form action="../Korisnik/prikaziProizvodeKorisniku">
+                                    <input style="color:white; margin-right:10px; width:100px; background-color: #035949" type="submit" value="Nazad" />
+                                </form>
+                                <form action="../Korisnik/idiNaKupi">
+                                    <input type="text" name="Id" asp-for="Id" placeholder="Id" value="@Model.Id" hidden="hidden" />
+                                    <input style="color:white; width:100px;background-color: #035949" type="submit" value="Kupi" />
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script src="~/table/js/jquery.min.js"></script>
+        <script src="~/table/js/popper.js"></script>
+        <script src="~/table/js/bootstrap.min.js"></script>
+        <script src="~/table/js/main.js"></script>
+    </body>
+</html>

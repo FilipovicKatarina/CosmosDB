@@ -1,0 +1,66 @@
+﻿@model IEnumerable<MongoDbProj.Models.Korisnik>
+
+@{ ViewData["Title"] = "prikaziKorisnike"; }
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Creative - Start Bootstrap Theme</title>
+        <link href="~/css/adminPrikaz.css" rel="stylesheet" />
+    </head>
+    <body id="page-top" style=" height: 100%; width: 100%;">
+        <div class="wrapper">
+            <nav id="sidebar">
+                <div class="sidebar-header">
+                    <h3>Admin nalog</h3>
+                </div>
+                <ul class="list-unstyled components">
+                    <li>
+                        <a href="../Korisnik/prikaziKorisnike">Korisnici</a>
+                    </li>
+                    <li>
+                        <a href="../Proizvod/prikaziProizvode">Proizvodi</a>
+                    </li>
+                </ul>
+            </nav>
+            <div id="content">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Email</th>
+                            <th scope="col">Izmena</th>
+                            <th scope="col">Brisanje</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            @if(item != null)
+                            {
+                                <tr>
+                                    <td>@item.Email</td>
+                                    <td>
+                                        <form action="obrisiKorisnika">
+                                            <input type="text" name="Id" placeholder="Id" value="@item.Id" hidden="hidden" />
+                                            <input style="width: 100%; background-color: #035949; color: snow " type="submit" value="Obriši korisnika" />
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form action="idiNaIzmeniKorisnik">
+                                            <input type="text" name="Id" placeholder="Id" value="@item.Id" hidden="hidden" />
+                                            <input style="width: 100%; background-color: #035949; color: snow " type="submit" value="Izmeni korisnika" />
+                                        </form>
+                                    </td>
+                                </tr>
+                              }
+                          }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>
+

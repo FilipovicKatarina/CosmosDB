@@ -1,0 +1,70 @@
+﻿@model MongoDbProj.Models.Proizvod
+
+@{ ViewData["Title"] = "idiNaIzmeniProizvod"; }
+
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="~/css/proizvodd.css" />
+    </head>
+    <body class="bb">
+        <form asp-action="izmeniProizvod">
+            <div class="formaL">
+                <div class="form-group row" id="divEmail">
+                    <label for="inputEmail3" asp-for="Naziv" id="labEmail" class="col-sm-2 col-form-label">Naziv</label>
+                    <div class="col-sm-10">
+                        <input asp-for="Naziv" class="form-control" id="nazivProizvoda" placeholder="Naziv">
+                    </div>
+                </div>
+                <div class="form-group row" hidden>
+                    <label asp-for="Sifra" class="col-sm-2 col-form-label">Sifra</label>
+                    <div class="col-sm-10">
+                        <input asp-for="Sifra" class="form-control" id="sifraP">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword3" asp-for="Cena" class="col-sm-2 col-form-label">Cena</label>
+                    <div class="col-sm-10">
+                        <input asp-for="Cena" class="form-control" id="cenaProizvoda" placeholder="Cena">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword3" asp-for="Kolicina" class="col-sm-2 col-form-label">Količina</label>
+                    <div class="col-sm-10">
+                        <input asp-for="Kolicina" class="form-control" id="kolicinaProizvoda" placeholder="Kolicina">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword3" asp-for="SrednjaOcena" class="col-sm-2 col-form-label">Srednja Ocena</label>
+                    <div class="col-sm-10">
+                        <input asp-for="SrednjaOcena" class="form-control" id="kolicinaProizvoda" placeholder="Kolicina">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword3" asp-for="Kategorija" class="col-sm-2 col-form-label">Kategorija</label>
+                    <div class="col-sm-10">
+                        <input asp-for="Kategorija" class="form-control" id="kolicinaProizvoda" placeholder="Kolicina">
+                    </div>
+                </div>
+                <div class="form-group row" hidden>
+                    <label for="inputPassword3" asp-for="IdProdavnice" class="col-sm-2 col-form-label">Id prodavnice</label>
+                    <div class="col-sm-10">
+                        <input asp-for="IdProdavnice" class="form-control" id="idProdProizvoda">
+                    </div>
+                </div>
+                <div class="form-group row" hidden>
+                    <label for="inputPassword3" asp-for="Id" class="col-sm-2 col-form-label">Id </label>
+                    <div class="col-sm-10">
+                        <input asp-for="Id" class="form-control" id="idProizvoda">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Sačuvaj" class="btn btn-primary" />
+                </div>
+            </div>
+        </form>
+    </body>
+</html>

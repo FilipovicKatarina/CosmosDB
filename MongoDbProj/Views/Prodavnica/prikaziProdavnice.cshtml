@@ -1,0 +1,53 @@
+﻿@model IEnumerable<MongoDbProj.Models.Prodavnica>
+
+@{
+    ViewData["Title"] = "prikaziPordavnice";
+}
+
+<h1 style="background-color:darkslategray; color:white; text-align:center">Prikaz prodavnica</h1>
+<hr />
+<hr />
+
+<table class="table">
+    <thead style="background-color:seagreen">
+        <tr>
+            <th width="200">Sifra</th>
+            <th width="200">Naziv</th>
+            <th width="200">Adresa </th>
+            <th width="200"> Funkcije-proizvodi</th>
+            <th width="200"> Funkcije-prodavnica</th>
+        </tr>
+    </thead>
+    <tbody style="background-color:lightgreen">
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@item.Sifra</td>
+            <td>@item.Ime</td>
+            <td>@item.Adresa</td>
+            <td>
+                <form action="../Proizvod/idiNaKreirajProizvod" method="post">
+                    <input type="text" name="Id" placeholder="Id" value="@item.Id" hidden="hidden" />
+                    <input style="width:100%;background-color:lightyellow" type="submit" value="Dodaj porizvod" />
+                </form>
+                <form action="../Proizvod/prikaziProizvode" method="get">
+                    <input type="text" name="Id" placeholder="Id" value="@item.Id" hidden="hidden" />
+                    <input style="width:100%;background-color:aliceblue" color="blue" type="submit" value="Pogledaj proizvode" background-color="#C8E0E8" />
+                </form>
+            </td>
+            <td>
+                <form action="obrisiProdavnicu">
+                    <input type="text" name="Id" placeholder="Id" value="@item.Id" hidden="hidden" />
+                    <input style="width:100%;background-color:lightyellow; color:red" type="submit" value="Obriši prodavnicu" />
+                </form>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+<br >
+<br >
+<hr >
+<div>
+    <a href="../Prodavnica/idiNaKreirajProdavnicu">Dodaj novu prodavnicu</a>
+</div>

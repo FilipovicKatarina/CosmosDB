@@ -1,0 +1,41 @@
+﻿@model IEnumerable<MongoDbProj.Models.Prodavnica>
+
+@{
+    ViewData["Title"] = "kreirajKorisnikaa";
+}
+
+<h1 style="background-color:darkslategray; color:white; text-align:center">Prikaz svih prodavnica sa muzickim instrumentima</h1>
+<table class="table">
+    <thead style="background-color:seagreen">
+        <tr>
+        <tr>
+            <th width="200">Sifra</th>
+            <th width="200">Naziv</th>
+            <th width="200">Adresa </th>
+            <th width="200"> Funkcije-proizvodi</th>
+        </tr>
+        </tr>
+    </thead>
+    <tbody style="background-color:lightgreen">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Sifra
+                </td>
+                <td>
+                    @item.Ime
+                </td>
+                <td>
+                    @item.Adresa
+                </td>
+                <td>
+                    <form action="prikaziProizvodeKorisniku">
+                        <input type="text" name="Id" placeholder="Id" value="@item.Id" hidden="hidden" />
+                        <input style="width:100%;background-color:aliceblue" color="blue" type="submit" value="Pogledaj proizvode" background-color="#C8E0E8" />
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

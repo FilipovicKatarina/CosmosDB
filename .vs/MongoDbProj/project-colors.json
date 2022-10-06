@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "379422c7-e0e7-4521-8ea6-b601be0fe29d": {
+      "ProjectGuid": "379422c7-e0e7-4521-8ea6-b601be0fe29d",
+      "DisplayName": "MongoDbProj",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}

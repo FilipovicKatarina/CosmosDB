@@ -1,0 +1,65 @@
+﻿@model MongoDbProj.Models.Proizvod
+
+@{
+    ViewData["Title"] = "prikaziKomentare";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Creative - Start Bootstrap Theme</title> 
+        <link href="~/css/prikaziKomentare.css" rel="stylesheet" /> 
+    </head>
+    <body>
+        <div class="container mt-5">
+            <div class="row d-flex justify-content-center" id="divKomentara">
+                <div class="col-md-8">
+                    @if (Model.listakomentara != null)
+                    {
+                        @foreach (var it in Model.listakomentara)
+                        {
+                            <div class="card p-3">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="user d-flex flex-row align-items-center" style="color: #035949">
+                                        <span style="color: #035949">
+                                            <small class="font-weight-bold text-primary" style="color: #035949">@it.KorisnikKom.Email</small>
+                                            &nbsp;&nbsp;
+                                            <small class="font-weight-bold">@it.TekstKomentara</small>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="action d-flex justify-content-between mt-2 align-items-center">
+                                    <div class="reply px-4">
+                                        <small>Remove</small> <span class="dots"></span>
+                                    </div>
+                                    <div class="icons align-items-center"> <i class="fa fa-star text-warning"></i> <i class="fa fa-check-circle-o check-icon"></i> </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                    <form class="form-block" action="../../Proizvod/dodajKomentarProizvodu"  method="post">
+                        <div class="row"> 
+                            <div class="col-xs-12 col-sm-6 fl_icon">
+                                <div class="form-group fl_icon">
+                                    <div class="icon"><i class="fa fa-envelope-o"></i></div>
+                                    <input class="form-input" type="text" name="Email" id="Email" placeholder="Tvoj email">
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <textarea class="form-input" required="" name="TekstKomentara" placeholder="Tvoj komentar"></textarea>
+                                </div>
+                            </div>
+                            <input type="text" name="Id" id="buttonKomenatrisi" placeholder="Id" value="@Model.Id" hidden="hidden" />
+                            <input  style="color: white; background-color: #035949; margin-left: 200px;" type="submit" value="Komentarisi" />
+                        </div>
+                    </form> 
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

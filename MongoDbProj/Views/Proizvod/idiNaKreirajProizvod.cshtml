@@ -1,0 +1,67 @@
+﻿@model MongoDbProj.Models.Proizvod
+
+@{ ViewData["Title"] = "idiNaKreirajProizvod"; }
+
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="~/css/proizvodd.css" />
+    </head>
+    <body class="bb">
+        <form asp-action="kreirajPoizvod" method="post" enctype="multipart/form-data">
+            <div class="formaL" id="formaL">
+                <div class="form-group row" id="divEmail">
+                    <label asp-for="Sifra" class="col-sm-2 col-form-label">Sifra</label>
+                    <div class="col-sm-10">
+                        <input asp-for="Sifra" class="form-control" placeholder="Sifra" id="sifraP">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputEmail3" asp-for="Naziv" id="labEmail" class="col-sm-2 col-form-label">Naziv</label>
+                    <div class="col-sm-10">
+                        <input asp-for="Naziv" class="form-control" id="nazivP" placeholder="Naziv">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputEmail3" asp-for="Kolicina" id="kolP" class="col-sm-2 col-form-label">Kolicina</label>
+                    <div class="col-sm-10">
+                        <input asp-for="Kolicina" class="form-control" id="kolicinaP" placeholder="Kolicina">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputEmail3" asp-for="Cena" id="cenaP" class="col-sm-2 col-form-label">Cena</label>
+                    <div class="col-sm-10">
+                        <input asp-for="Cena" class="form-control" id="cenaP" placeholder="Cena">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputEmail3" asp-for="Kategorija" id="cenaP" class="col-sm-2 col-form-label">Kategorija</label>
+                    <div class="col-sm-10">
+                        <input asp-for="Kategorija" class="form-control" id="cenaP" placeholder="Kategorija">
+                    </div>
+                </div>
+                <div class="form-group row" hidden>
+                    <label for="inputPassword3" asp-for="IdProdavnice" class="col-sm-2 col-form-label">id prod</label>
+                    <div class="col-sm-10">
+                        <input asp-for="IdProdavnice" class="form-control" id="inputPassword3">
+                    </div>
+                </div>
+                <div class="form-group row" style="margin-left:20px;">
+                    <label for="inputEmail3" asp-for="Slika" class="col-sm-2 col-form-label"></label>
+                    <div class="col-sm-10">
+                        <div class="custom-file">
+                            <input asp-for="Slika" name="Slika" class="form-control" type="file" />
+
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Kreiraj" id="kreirajBtn" class="btn btn-primary" />
+                </div>
+            </div>
+        </form>
+    </body>
+</html>

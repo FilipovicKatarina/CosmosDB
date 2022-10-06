@@ -1,0 +1,150 @@
+﻿@model IEnumerable<MongoDbProj.Models.Proizvod>
+
+@using Newtonsoft.Json;
+
+@{ ViewData["Title"] = "prikaziProizvodeKorisniku"; }
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Table 06</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="~/table/css/still.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <section class="ftco-section">
+            <div class="container">
+                <div style="display:flex; flex-direction:row">
+                    <form action="../../Proizvod/idiNaPrikaziFormuZaPretragu">
+                        <button style="background-color:#035949" href="../../Proizvod/idiNaPrikaziFormuZaPretragu" class="btn btn-info btn-lg">
+                            <span style="background-color:#035949" class="glyphicon glyphicon-search"></span> Pretrazi
+                        </button>
+                    </form>
+                    <form action="../../Korisnik/prikaziSadrzajKorpe" method="post">
+                        <a style="background-color:#035949" href="../../Korisnik/prikaziSadrzajKorpe" class="btn btn-info btn-lg">
+                            <span class="glyphicon glyphicon-shopping-cart" style="background-color:#035949"></span> Korpa
+                        </a>
+                    </form>
+                    <form action="../../Proizvod/preporukaZaLogKorisnike" method="post">
+                        <a style="background-color:#035949" href="../../Proizvod/preporukaZaLogKorisnike" class="btn btn-info btn-lg">
+                            <span class="fa fa-check-square-o" style="background-color:#035949"></span> Preporuka
+                        </a>
+                    </form>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-6 text-center mb-4">
+                        <h2 class="heading-section">Proizvodi</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-wrap">
+                            <table class="table">
+                                <thead class="thead-primary">
+                                    <tr>
+                                        <th>&nbsp;</th>
+                                        <th>Naziv</th>
+                                        <th>Sifra</th>
+                                        <th>Cena</th>
+                                        <th>Kategorija</th>
+                                        <th>Broj dostupnih</th>
+                                        <th>&nbsp;</th>
+                                        <th>&nbsp;</th>
+                                        <th>&nbsp;</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        @if (item != null)
+                                        {
+                                            <tr class="alert" role="alert">
+                                                <td>
+                                                    <div class="img" style="background-image: url('/images/@item.PutanjaSlike'); "></div>
+                                                </td>
+                                                <td>
+                                                    <div class="email">
+                                                        @item.Naziv
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    @item.Sifra
+                                                </td>
+                                                <td class="quantity">
+                                                    @item.Cena
+                                                </td>
+                                                <td class="quantity">
+                                                    <form action="../../Proizvod/pikaziProizvodePoKategoriji" method="get">
+                                                        <a value="@item.Kategorija" name="Kategorija" href="../../Proizvod/pikaziProizvodePoKategoriji?Kategorija=@item.Kategorija">#@item.Kategorija </a>
+                                                    </form>
+                                                </td>
+                                                <td>
+                                                    @item.Kolicina
+                                                </td>
+                                                <td>
+                                                    <form action="../../Korisnik/dodajProizvodUkorpu" method="post">
+                                                        <input type="text" name="Id" placeholder="Id" value="@item.Id" hidden="hidden" />
+                                                        <input style="width: 100%; color:white; background-color: #035949" type="submit" value="  Kupi  " />
+                                                    </form>
+                                                </td>
+                                                <td>
+                                                    <form action="../../Proizvod/oceniProizvod" method="post">
+                                                        <div>
+                                                            <div class="col-sm-10" hidden>
+                                                                <input asp-for="@item.Id" name="Id" class="form-control" value="@item.Id">
+                                                            </div>
+                                                            <button href="../../Proizvod/oceniProizvod/" name="Ocena" value="1">
+                                                                <span class="glyphicon glyphicon-star-empty"></span>
+                                                            </button>
+                                                            <button href="../../Proizvod/oceniProizvod/" name="Ocena" value="2">
+                                                                <span class="glyphicon glyphicon-star-empty"></span>
+                                                            </button>
+                                                            <button href="../../Proizvod/oceniProizvod/" name="Ocena" value="3">
+                                                                <span class="glyphicon glyphicon-star-empty"></span>
+                                                            </button>
+                                                            <button href="../../Proizvod/oceniProizvod/" name="Ocena" value="4">
+                                                                <span class="glyphicon glyphicon-star-empty"></span>
+                                                            </button>
+                                                            <button href="../../Proizvod/oceniProizvod/" name="Ocena" value="5">
+                                                                <span class="glyphicon glyphicon-star-empty"></span>
+                                                            </button>
+                                                        </div>
+                                                    </form>
+                                                    &nbsp;
+                                                    <div>
+                                                        Srednja ocena:@item.SrednjaOcena
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <form action="../../Proizvod/prikaziKomentare" method="get">
+                                                        <input name="Id" asp-for="@item.Id" value="@item.Id" hidden />
+                                                        <button href="../../Proizvod/prikaziKomentare" name="Id" value="@item.Id">
+                                                            Komentari
+                                                        </button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        }
+
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script src="~/table/js/jquery.min.js"></script>
+        <script src="~/table/js/popper.js"></script>
+        <script src="~/table/js/bootstrap.min.js"></script>
+        <script src="~/table/js/main.js"></script>
+    </body>
+</html>
+
